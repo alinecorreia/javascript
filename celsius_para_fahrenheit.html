@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>Celsius para Fahrennheit</title>
+  </head>
+  <style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+      background: #e9e3ca;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box-calculo input {
+      padding: 60px 0;
+      box-sizing: border-box;
+      border: 4px solid #252525;
+      background: transparent;
+      font-size: 2.25em;
+      text-align: center;
+      font-family: Century Gothic, sans-serif;
+      width: 200px;
+      color: #252525;
+    }
+
+    .box-calculo input:focus {
+      background: #c4bfaa;
+    }
+
+    span {
+      color: #e9e3ca;
+      text-align: center;
+    }
+
+    .box-calculo button {
+      width: 200px;
+      background-color: #252525;
+      padding: 20px 20px;
+      color: #e9e3ca;
+      cursor: pointer;
+      border-style: solid;
+      border-width: 0 4px 4px 4px;
+      border-color: #252525;
+      text-transform: uppercase;
+      font-size: 1.15em;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .box-calculo button:hover {
+      background-color: #e9e3ca;
+      border-style: solid;
+      border-width: 0 4px 4px 4px;
+      color: #252525;
+    }
+
+    p {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .box-resultado {
+      display: flex;
+      justify-content: center;
+    }
+
+    .box-resultado .resultado {
+      width: 60px;
+      padding: 30px;
+      background-color: #252525;
+      color: #e9e3ca;
+      border: 4px solid #e9e3ca;
+      text-align: center;
+      font-size: 2.15em;
+    }
+  </style>
+
+  <body>
+    <section>
+      <p>Celsius para</p>
+      <div class="box-calculo">
+        <input type="number" id="temp_celsius" placeholder="Cº" />
+        <br />
+        <button type="submit" id="calcular">Calcular</button>
+      </div>
+      <p>Fahrennheit</p>
+      <div class="box-resultado">
+        <div class="resultado" id="temp_fahr">
+          <span>ºF</span>
+        </div>
+      </div>
+    </section>
+
+    <script type="text/javascript">
+      var temp_celsius = document.getElementById("temp_celsius");
+      var temp_fahr = document.getElementById("temp_fahr");
+
+      temp_celsius.focus();
+
+      document.getElementById("calcular").onclick = function() {
+        var celsius = temp_celsius.value;
+        var resultado = parseInt((9 * celsius) / 5 + 32);
+
+        temp_fahr.innerHTML = resultado;
+      };
+    </script>
+  </body>
+</html>
