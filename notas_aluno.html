@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Notas dos Alunos</title>
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #4b4141;
+        max-width: 960px;
+        margin: 0 auto;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+      }
+
+      .valores input {
+        background: #ce8080;
+        color: #d3d3d3;
+        font-weight: bold;
+        width: 90px;
+        padding: 30px 0;
+        text-align: center;
+        font-size: 1.125em;
+        transition: 0.3s;
+        border-radius: 50%;
+        border: none;
+        box-shadow: 0px 10px 0px 2px #312929;
+      }
+
+      .valores input:hover {
+        padding: 25px 0;
+        box-shadow: 0px 15px 0px 2px #d3d3d3;
+      }
+
+      #calcular {
+        margin-top: 30px;
+        width: 100px;
+        padding: 10px 0;
+        background: #ce8080;
+        border: 2px solid #3b2e2e;
+        text-transform: uppercase;
+        color: #3b2e2e;
+        font-weight: bolder;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+
+      #calcular:hover {
+        background: #3b2e2e;
+        color: #d39898;
+      }
+
+      .resultado {
+        margin-top: 20px;
+        width: 300px;
+        background: #252525;
+        padding: 20px 0;
+        box-shadow: 10px 10px 0px 0 #d3d3d3;
+        transition: 0.3s;
+        text-align: center;
+      }
+
+      .resultado:hover {
+        background: #d3d3d3;
+        box-shadow: 10px 10px 0px 0 #252525;
+      }
+
+      .resultado > span {
+        font-weight: bold;
+        font-style: oblique;
+        color: #ca8383;
+      }
+
+      .resultado-info {
+        margin-top: 50px;
+        text-align: center;
+      }
+
+      .resultado-info p {
+        text-transform: uppercase;
+        color: #252525;
+        border-bottom: 1px solid #252525;
+        font-size: 2.25em;
+      }
+
+      #media {
+        color: white;
+        font-size: 2.25em;
+      }
+    </style>
+
+    <section class="principal">
+      <div class="valores">
+        <input type="text" placeholder="Nota 1" id="nota1" />
+        <input type="text" placeholder="Nota 2" id="nota2" />
+        <input type="text" placeholder="Faltas" id="num_faltas" />
+        <br />
+        <button type="submit" id="calcular">Calcular</button>
+      </div>
+
+      <div class="resultado">
+        <span id="resultado">Resultado...</span>
+      </div>
+      <div class="resultado-info">
+        <p>Média</p>
+        <br />
+        <span id="media"></span>
+      </div>
+    </section>
+
+    <script>
+      document.getElementById("calcular").onclick = function() {
+        var nota1 = parseFloat(document.getElementById("nota1").value);
+        var nota2 = parseFloat(document.getElementById("nota2").value);
+        var num_faltas = document.getElementById("num_faltas").value;
+
+        var media = (nota1 + nota2) / 2;
+        var presenca = (20 - num_faltas) / 20;
+
+        var resultado;
+
+        if (media >= 6.5 && presenca >= 0.7) {
+          resultado = "Aprovadissimo!!!";
+        } else if (media < 6.5 && presenca < 0.7) {
+          resultado = "Reprovado por faltas e media!";
+        } else if (media < 6.5) {
+          resultado = "Reprovado por média insuficiente";
+        } else {
+          resultado = "Reprovado por faltas!";
+        }
+
+        document.getElementById("resultado").innerHTML = resultado;
+        document.getElementById("media").innerHTML = media;
+      };
+    </script>
+  </body>
+</html>
