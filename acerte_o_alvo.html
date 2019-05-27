@@ -1,0 +1,110 @@
+<style>
+    body {
+     
+      background-image: url(https://i.gifer.com/Az1x.gif);
+    }
+    .rotulo {
+      display: block;
+      border-bottom-style: dotted;
+      border-left-style: solid;
+      border-right-style: solid;
+      border-width: 3px;
+      border-color: #484770;
+      border-top-style: double;
+      width: 600px;
+      background-color: #cbb9ca;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 1.925rem;
+      color: #714f68;
+      letter-spacing: 2px;
+     border-top-left-radius: 80px;
+      border-top-right-radius: 80px;
+    }
+  
+    label {
+        display: block;
+        padding: 20px;
+    }
+  
+  
+    canvas {
+      border: 2px solid black;
+      background: antiquewhite;
+    }
+  
+    p {
+      color: antiquewhite;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+      text-transform: uppercase;
+    }
+  </style>
+  
+  <center>
+    <div class="rotulo">   
+      <label> Tente acertar o alvo! :o </label>    
+  </div>
+  
+    <canvas width="600" height="400"></canvas>
+    <p>Por: Amandita ^^</p>
+  </center>
+  
+  <script>
+    var tela = document.querySelector("canvas");
+    var pincel = tela.getContext("2d");
+  
+    pincel.fillRect(0, 0, 600, 400);
+  
+    var raio = 10;
+  
+    var xAleatorio;
+    var yAleatorio;
+  
+    function desenhaCirculo(x, y, raio, cor) {
+      pincel.fillStyle = cor;
+      pincel.beginPath();
+      pincel.arc(x, y, raio, 0, 2 * Math.PI);
+      pincel.fill();
+    }
+  
+    function limpaTela() {
+      pincel.clearRect(0, 0, 600, 400);
+    }
+  
+    function desenhaAlvo(x, y) {
+      desenhaCirculo(x, y, raio + 20, "#5B2E89");
+      desenhaCirculo(x, y, raio + 10, "white");
+      desenhaCirculo(x, y, raio, "#5B2E89");
+    }
+  
+    function sorteiaPosicao(maximo) {
+      return Math.floor(Math.random() * maximo);
+    }
+  
+    function atualizaTela() {
+      limpaTela();
+      xAleatorio = sorteiaPosicao(600);
+      yAleatorio = sorteiaPosicao(400);
+  
+      desenhaAlvo(xAleatorio, yAleatorio);
+    }
+  
+    setInterval(atualizaTela, 2000);
+  
+    function dispara(evento) {
+      var x = evento.pageX - tela.offsetLeft;
+      var y = evento.pageY - tela.offsetTop;
+  
+      if (
+        x > xAleatorio - raio &&
+        x < xAleatorio + raio &&
+        y < yAleatorio + raio &&
+        y > yAleatorio - raio
+      ) {
+        alert("Acertooooou! *---* Tenta de novo >.<");
+      }
+    }
+  
+    tela.onclick = dispara;
+  </script>
+  
