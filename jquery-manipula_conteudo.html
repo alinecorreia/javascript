@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Manipulação de elementos - JQuery</title>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <style>
+      :root {
+        --bg1: #d2c2be;
+        --bg2: #c9cfcf;
+        --bg3: #cecfc9;
+        --bg4: #c9c9ce;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body,
+      p,
+      h1,
+      span {
+        margin: 0;
+        padding: 0;
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+
+      body {
+        background: #817d7d;
+      }
+
+
+      section {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding-bottom: 20px;
+        text-align: center;
+        margin: 20px;
+        border: 4px solid #252525;
+      }
+
+      
+      .section {
+        height: 95vh;
+        background: var(--bg1);
+      }
+
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      code {
+        background: #3b3651;
+        color: #fecf46;
+        max-width: 400px;
+        padding: 20px 0px;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+      }
+
+      h1,
+      h2 {
+        margin-bottom: 10px;
+        font-size: 2em;
+      }
+
+      p {
+        line-height: 1.4em;
+        margin-bottom: 20px;
+      }
+
+      h2::after,
+      h1::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 3px;
+        background: #252525;
+        margin: 20px auto;
+      }
+
+      .conteudo-do-span {
+        display: block;
+        max-width: 400px;
+        margin: 10px auto;
+        color: #3b3651;
+      }
+
+      button {
+        padding: 20px 10px;
+        margin-top: 10px;
+        background: transparent;
+        border: 2px solid #3b3651;
+        text-transform: uppercase;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #3b3651;
+        color: #c27072;
+      }
+
+      h4 {
+        background: white;
+        width: 100px;
+        padding: 10px 0;
+        margin: 10px auto 0 auto ;
+        border-top: 3px solid #363651;
+        border-left: 3px solid #363651;
+        border-right: 3px solid #363651;
+      }
+
+      ul li{
+        list-style: none;
+        text-align: left;
+      }
+
+      ul li::before {
+        content: "➜";
+        padding-right: 15px;
+      }
+
+      /* Info */
+
+
+      .codigo {
+        width: 500px;
+        margin: 20px auto 0 auto;
+        padding: 30px 20px;
+        border: 2px solid #d18a2c;
+        color: #D27848;
+        font-family: monospace;
+        text-align: left;
+        background: #1F2023;
+      }
+
+
+      .muda-imagem-item,
+      .muda-texto-item {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      .muda-imagem-item img {
+        width: 300px;
+        object-fit: cover;
+        border: 3px solid #252525;
+      }
+
+      .styling {
+        background: #252525;
+        color: #cfc9ce;
+        border: 2px solid #c9cfcb;
+      }
+
+      .div-append {
+        background: #fecf46;
+        padding: 10px;
+        font-family: 'Courier New', Courier, monospace;
+      }
+
+      .div-append > p {
+        color: red;
+        background: #c9cccf;
+      }
+    </style>
+
+    <section class="section">
+      <div class="container">
+        <h1>Jquery - Testes de manipulação do conteúdo</h1>
+        <p class="primeiro-paragrafo">
+          Olá, jovem padawan! Tudo bem contigo? Esta página perdida pela
+          vastidão da web tem como propósito servir apenas de testes para a
+          manipulação de conteúdos utlizando Jquery. A gente precisa praticar um
+          pouquinho pra não esquecer e ficar mais forte, né?
+        </p>
+      </div>
+    </section>
+
+    <section style="background: var(--bg2);">
+      <div class="container">
+        <h4>Código</h4>
+        <code>.html()</code>
+
+        <span class="span-conteudo-1 conteudo-do-span">
+          <ul>
+            <li>Pega o conteudo dentro do primeiro item selecionado e transforma em uma string</li>
+            <li>Ao colocar um argumento, ele só altera o PRIMEIRO elemento!</li>
+            <li>Ao setar o elemento, ele pega de TODOS existentes na pagina!</li>
+          </ul>
+        </span>
+
+        <button class="btn-html-1">Pegar o html do span!</button>
+        <button class="btn-html-2">Mudar texto do span!</button>
+
+        <div class="codigo">O código aparecerá aqui... :)</div>
+      </div>
+    </section>
+
+    <section style="background: var(--bg3);" >
+      <div class="container">
+        <h4>Código</h4>
+        <code>.attr() <br>
+          .css() <br>
+          .text();
+
+
+        </code>
+
+        <span class="conteudo-do-span">
+          <ul>
+            <li>Manipula os elementos do html!</li>
+            <li>Muda o css</li>
+            <li>Pega o conteúdo de todos os itens que fizerem parte da seleção e junta em uma única string</li>
+          </ul>
+        </span>
+
+        <div class="muda-imagem-item">
+          <img src="img/2.jpg" id="imagem" />
+          <button class="muda-imagem">Mudar imagem</button>
+        </div>
+
+        <div class="codigo">O código aparecerá aqui... :)</div>
+      </div>
+    </section>
+
+    <section style="background: var(--bg4);">
+        <div class="container">
+          <h4>Código</h4>
+          <code>.text()
+            <br>.hide()
+
+          </code>
+  
+          <span class="conteudo-do-span">
+
+            <ul>
+              <li>Pega o conteudo dentro do primeiro item selecionado e transforma em uma string, porém não renderiza o html dentro dele.</li>
+              <li>Oculta o elemento selecionado</li>
+            </ul>
+
+            <p id="paragrafo" style="font-weight: bold;">
+                Galáxias são aglomerados de estrelas, planetas, gás e poeira ligados
+                pela força da gravidade e energia suficiente para formação de estrelas e
+                planetas.
+              </p>
+          </span>
+  
+          <button id="muda-texto">Muda texto</button>
+  
+          <div class="codigo">O código aparecerá aqui... :)</div>
+        </div>
+      </section>
+
+
+      <section style="background: var(--bg1);">
+          <div class="container">
+            <h4>Código</h4>
+            <code>.after()
+              <br>.insertAfter()
+  
+            </code>
+    
+            <span class="conteudo-do-span">
+  
+              <ul>
+                <li>Adiciona conteúdo após o item selecionado</li>
+              </ul>
+  
+              <p id="paragrafo-after" style="font-weight: bold;">
+                  Queria que você adicionasse corações depois desta frase ^^
+                </p>
+            </span>
+    
+            <button class="btn-after">Adicionar coração!!!</button>
+            <button class="btn-insertAfter">Adicionar um paragrafo</button>
+            <div class="codigo">O código aparecerá aqui... :)</div>
+          </div>
+        </section>
+
+        <section style="background: var(--bg2);">
+            <div class="container">
+              <h4>Código</h4>
+              <code>.before()
+                <br>.insertBefore()
+    
+              </code>
+      
+              <span class="conteudo-do-span">
+    
+                <ul>
+                  <li>Adiciona conteúdo ANTES do item selecionado</li>
+                </ul>
+    
+                <p id="paragrafo-before" style="font-weight: bold;">
+                    Agora quero estrelas antes de mim!!! ^^
+                  </p>
+              </span>
+      
+              <button class="btn-before">Adicionar estrelinha!!!</button>
+              <button class="btn-insertBefore">Adicionar um paragrafo fofo</button>
+              <div class="codigo">O código aparecerá aqui... :)</div>
+            </div>
+          </section>
+
+          <section style="background: var(--bg3);">
+              <div class="container">
+                <h4>Código</h4>
+                <code>.wrap()      
+                </code>
+        
+                <span class="conteudo-do-span">
+      
+                  <ul>
+                    <li>Envolve o conteúdo selecionado nas tags especificas</li>
+                  </ul>
+      
+                  <p id="paragrafo-wrap" style="font-weight: bold;">
+                      Tu pode me colorir de azul? 
+                    </p>
+                </span>
+        
+                <button class="btn-wrap-azul">Pinta de azul</button>
+                <button class="btn-wrap-rosa">Pinta de rosa</button>
+                <div class="codigo">O código aparecerá aqui... :)</div>
+              </div>
+            </section>
+  
+            <section style="background: var(--bg4);">
+                <div class="container">
+                  <h4>Código</h4>
+                  <code>.addClass() <br>
+                    .removeClass() <br>
+                    .toggleClass()     
+                  </code>
+          
+                  <span class="conteudo-do-span">
+        
+                    <ul>
+                      <li>Adiciona classe</li>
+                      <li>Remove classe</li>
+                      <li>Alterna classe</li>
+                    </ul>
+        
+                    <p class="paragrafo-normal"  style="font-weight: bold;">
+                        Este paragrafo possui a classe "paragrafo-normal". Bora fazer uns experimentos com uma classe chamada "styling"? Veja o que acontece! 
+                      </p>
+                  </span>
+          
+                  <button class="btn-addClass">Adicionar classe</button>
+                  <button class="btn-removeClass">Remover classe</bumtton>
+                  <button class="btn-toggleClass">Alternar classe</button>
+                  <div class="codigo">O código aparecerá aqui... :)</div>
+                </div>
+              </section>
+
+              
+            <section style="background: var(--bg1);">
+                <div class="container">
+                  <h4>Código</h4>
+                  <code>.append() <br>
+                    .appendTo()    
+                  </code>
+          
+                  <span class="conteudo-do-span">
+        
+                    <ul>
+                      <li>Adiciona conteúdo ao final do item selecionado (Porém, dentro da tag!!!!!)</li>
+                      <li>O conteúdo do objeto Jquery que será adicionado ao parâmetro do appendTo</li>
+                    </ul>
+        
+                    <div class="div-append">
+                      Olá! Está é uma div bem legal! Tem um paragrafo aqui...
+                      <p>Oi, eu sou o paragrafo, tu pode colocar dentro de mim uma tag bold? valeu</p>
+                    </div>
+                  </span>
+          
+                  <button class="btn-append">Colocar tag b no p</button>
+                  <div class="codigo">O código aparecerá aqui... :)</div>
+                </div>
+              </section>
+
+    <script>
+      var codigo = $(".codigo");
+
+      $(".btn-html-1").click(function() {
+        $(".span-conteudo-1").html();
+        codigo.text('$(".span-conteudo-1").html();');
+      });
+
+      $(".btn-html-2").click(function() {
+        $(".span-conteudo-1").html("Conteúdo alterado!!");
+        codigo.text('$(".span-conteudo-1").html("Conteúdo alterado!!");'
+        );
+      });
+
+      $(".muda-imagem").click(function() {
+        $("#imagem").attr("src", "img/3.jpg");
+        $(".muda-imagem")
+          .text("Que imagem linda né?")
+          .css("cursor", "none");
+        codigo.text('$("#imagem").attr("src", "img/3.jpg");' + "<br>" + '$(".muda-imagem").text("Que imagem linda né?").css("cursor", "none");');
+      });
+
+      $("#muda-texto").click(function() {
+        $("#paragrafo").text("Mudei! :) Psiu, escondi o botão!!");
+        $("#muda-texto").hide(1000);
+
+        codigo.text('$("#paragrafo").text("Mudei! :) Psiu, escondi o botão!!");' + '<br>' + '$("#muda-texto").hide(1000);');
+      });
+
+      $(".btn-after").click(function() {
+        $("#paragrafo-after").after("♥");
+
+        codigo.text('$("#paragrafo-after").after("♥");');
+      });
+
+      $(".btn-insertAfter").click(function() {
+        $("<p> Sou um paragrafo! </p>").insertAfter('#paragrafo-after');
+
+        codigo.text('$("<p> Sou um paragrafo! </p>").insertAfter("#paragrafo-after");');
+      });
+
+      $(".btn-before").click(function() {
+        $("#paragrafo-before").before("✰");
+
+        codigo.text('$("#paragrafo-after").before("✰");');
+      });
+
+      $(".btn-insertBefore").click(function() {
+        $("<p> Sou um paragrafo fofo! </p>").insertBefore('#paragrafo-before');
+
+        codigo.text('$("<p> Sou um paragrafo fofo! </p>").insertBefore("#paragrafo-before");');
+      });
+
+      $(".btn-wrap-azul").click(function() {
+        $("#paragrafo-wrap").wrap('<div style="background: blue;"></div>').text("Obrigada, adorei a cor!!");
+        $(".btn-wrap-azul").hide();
+        codigo.text('$("#paragrafo-wrap").wrap("<div style="background: blue;"></div>");');
+      })
+
+      $(".btn-wrap-rosa").click(function() {
+        $("#paragrafo-wrap").wrap('<div style="background: pink;"></div>').text("Hey!!!Eu queria azul!!Agora não dá mais pra tirar ¬¬, o botão sumiu hahah");
+        codigo.text('$("#paragrafo-wrap").wrap("<div style="background: blue;"></div>");');
+      })
+
+      $(".btn-addClass").click(function() {
+        $(".paragrafo-normal").addClass('styling').text("Gostou do meu novo estilo?");
+        codigo.text('$(".paragrafo-normal").addClass("styling").text("Gostou do meu novo estilo?");');
+      })
+
+      $(".btn-removeClass").click(function() {
+        $(".paragrafo-normal").removeClass('styling').text("Me removeram :( kkkkkk");
+        codigo.text('$(".paragrafo-normal").removeClass("styling").text("Me removeram :( kkkkkk");');
+      })
+
+      $(".btn-toggleClass").click(function() {
+        $(".paragrafo-normal").toggleClass('styling').text("Agora tu adiciona a classe e remove no mesmo botãozinho :o massa né?");
+        codigo.text('$(".paragrafo-normal").toggleClass("styling").text("Agora tu adiciona a classe e remove no mesmo botãozinho :o massa né?");');
+      })
+
+      $(".btn-append").click (function() {
+        $(".div-append p").append("<b> Oi!! Estou no paragrafo e sou bold </b>");
+        codigo.text('$(".div-append p").append("<b> Oi!! Estou no paragrafo e sou bold </b>");');
+      
+      })
+    </script>
+  </body>
+</html>
