@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>localStorage</title>
+  </head>
+  <body>
+    <section>
+      <div id="form">
+        <input type="text" id="nome" placeholder="Digite seu nome :)" />
+        <button id="enviar-nome">Enviar</button>
+      </div>
+
+      <div id="campo-nome" style="display: none">
+        <span id="welcome-texto">Hey! Bem vindo</span>
+        <br />
+        <span id="not-me">Não és tu?</span>
+      </div>
+    </section>
+  </body>
+
+  <script>
+    document.getElementById("enviar-nome").onclick = function() {
+      //guarda nome digitado em localStorage
+      var nome = document.getElementById("nome").value;
+      localStorage.setItem("nome", nome);
+
+      //esconde o formulario
+      document.getElementById("form").style.display = "none";
+
+      //atualiza e mostra mensagem de boas vindas
+      document.getElementById("welcome-texto").innerHTML =
+        "Olá" + localStorage.nome + ", tudo bem?";
+      document.getElementById("not-me").innerHTML =
+        "Não é você, " + localStorage.nome + " ?";
+      document.getElementById("campo-nome").style.display = "initial";
+    };
+
+    if (localStorage.nome) {
+      //esconde o formulario
+      document.getElementById("form").style.display = "none";
+
+      //atualiza e mostra mensagem de boas vindas
+      document.getElementById("campo-nome").style.display = "initial";
+      document.getElementById("welcome-texto").innerHTML =
+        "Olá " + localStorage.nome + ", tudo bem?";
+      document.getElementById("not-me").innerHTML =
+        "Não é você, " + localStorage.nome + " ?";
+    }
+
+    document.getElementById("not-me").onclick = function() {
+      localStorage.removeItem("nome");
+
+      document.getElementById("form").style.display = "initial";
+      document.getElementById("campo-nome").style.display = "none";
+    };
+  </script>
+</html>
