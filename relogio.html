@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Relógio</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Happy+Monkey&display=swap");
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 0;
+      height: calc(100vh - 40px);
+      background-image: linear-gradient(to bottom, #4f6c68, #7b8a88);
+      margin: 20px;
+      border: 3px solid #222222;
+      font-family: "Happy Monkey", cursive;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 10px 5px 3px black;
+    }
+
+    .principal {
+      position: absolute;
+      width: 100%;
+      top: 40%;
+    }
+
+    .relogio {
+      background: #c9b2a4;
+      padding: 20px;
+      width: 300px;
+      align-items: center;
+      justify-content: center;
+      color: #4f6c68;
+      font-size: 3em;
+      margin: 0 auto;
+      border: 3px solid #222222;
+      box-shadow: 10px 5px 0#223333;
+      text-align: center;
+    }
+  </style>
+  <body id="particles-js">
+    <section class="principal">
+      <div class="relogio" id="relogio"></div>
+    </section>
+
+    <script>
+      setInterval(function() {
+        var hora_atual = new Date();
+
+        var hora = hora_atual.getHours();
+        var minutos = hora_atual.getMinutes();
+        var segundos = hora_atual.getSeconds();
+
+        function formata_hora(tempo) {
+          if (tempo >= 0 && tempo <= 9) {
+            var hora_formatada = tempo.toString();
+            hora_formatada = "0" + hora_formatada;
+          } else {
+            var hora_formatada = tempo.toString();
+          }
+          return hora_formatada;
+        }
+
+        document.getElementById("relogio").innerHTML =
+          formata_hora(hora) +
+          ":" +
+          formata_hora(minutos) +
+          ":" +
+          formata_hora(segundos);
+      }, 1000);
+    </script>
+
+    <script src="assets/particles.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
